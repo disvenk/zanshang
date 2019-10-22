@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo  
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 提供方应用信息，用于计算依赖关系 不是匹配条件，不要与提供方一样-->
+	<dubbo:application name="consumer_web_brand" />
+	<!-- 使用zookeeper注册中心暴露服务地址 -->
+	<dubbo:registry address="zookeeper://${rpc.registry_address}" />
+	<dubbo:annotation package="com.resto.brand.web.controller" />
+	<dubbo:consumer timeout="${dubbo.provider.timeOut}" />
+
+	<dubbo:reference interface="com.resto.brand.web.service.PermissionService" id="permissionService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.UserService" id="userService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.RoleService" id="roleService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.BrandService" id="brandService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.BrandUserService" id="brandUserService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.DatabaseConfigService" id="databaseConfigService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.ShopDetailService" id="shopDetailService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.ShopModeService" id="shopModeService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.WechatConfigService" id="wechatConfigService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.UserGroupService" id="userGroupService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.SmsChargeOrderService" id="smsChargeOrderService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.SmsAcountService" id="smsAcountService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.WxServerConfigService" id="wxServerConfigService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.MqConfigService" id="mqConfigService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.BusinessFormatService" id="businessFormatService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.CommentBaseSettingService" id="commentBaseSettingService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.RankingsService" id="rankingsService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.ShowTagService" id="showTagService" check="false" />
+	<dubbo:reference interface="com.resto.brand.web.service.SmsLogService" id="smsLogService" check="false" />
+
+
+</beans>

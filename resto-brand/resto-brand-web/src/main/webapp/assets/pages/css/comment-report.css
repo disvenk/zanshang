@@ -1,0 +1,64 @@
+#control .btn {
+  color: #fff;
+}
+#control .btn:hover {
+  color: #fff;
+}
+#control .blue {
+  background: #2893CD;
+}
+
+#control .highlight {
+  color: red;
+  /* background: red; */
+}
+
+#control .up {
+  font-size: 12px;
+  padding-left: 20px !important;
+  vertical-align: middle !important;
+  background: url('../../global/img/up.png') 0 center no-repeat;
+  background-size: 20px 30px;
+}
+
+#control .down {
+  font-size: 12px;
+  padding-left: 20px !important;
+  vertical-align: middle !important;
+  background: url('../../global/img/down.png') 0 center no-repeat;
+  background-size: 20px 30px;
+}
+
+#control .panel-body {
+  position: relative;
+}
+#control .panel-body .button-group {
+  position: absolute;
+  z-index: 10;
+  left: 250px;
+  top: 14px;
+}
+
+#control .panel-body .button-group .btn {
+  cursor: pointer;
+  color: #333;
+}
+#control .panel-body .button-group .btn:hover {
+
+}
+#control .panel-body .button-group .btn-primary {
+  color: #fff;
+}
+
+#control .panel-body .search-box {
+z-index: 10;
+position: absolute;
+top: 16px;
+right: 40px;
+}
+
+#control .panel-body .search-box input {
+  margin-left: 8px;
+  width: 144px;
+  display: inline-block;
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.resto.brand.web.dao.CommentBaseSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.resto.brand.web.model.CommentBaseSetting" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
+    <result column="distance_time" property="distanceTime" jdbcType="INTEGER" />
+    <result column="four_small" property="fourSmall" jdbcType="INTEGER" />
+    <result column="five_small" property="fiveSmall" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, comment_count, distance_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment_base_setting
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from comment_base_setting
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.resto.brand.web.model.CommentBaseSetting" >
+    insert into comment_base_setting (id, comment_count, distance_time,four_small,five_small
+      )
+    values (#{id,jdbcType=VARCHAR}, #{commentCount,jdbcType=INTEGER}, #{distanceTime,jdbcType=INTEGER}, #{fourSmall,jdbcType=INTEGER}, #{fiveSmall,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.resto.brand.web.model.CommentBaseSetting" >
+    insert into comment_base_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="commentCount != null" >
+        comment_count,
+      </if>
+      <if test="distanceTime != null" >
+        distance_time,
+      </if>
+      <if test="fourSmall != null" >
+        four_small,
+      </if>
+      <if test="fiveSmall != null" >
+        five_small,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCount != null" >
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="distanceTime != null" >
+        #{distanceTime,jdbcType=INTEGER},
+      </if>
+      <if test="fourSmall != null" >
+        #{fourSmall,jdbcType=INTEGER},
+      </if>
+      <if test="fiveSmall != null" >
+        #{fiveSmall,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.resto.brand.web.model.CommentBaseSetting" >
+    update comment_base_setting
+    <set >
+      <if test="commentCount != null" >
+        comment_count = #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="distanceTime != null" >
+        distance_time = #{distanceTime,jdbcType=INTEGER},
+      </if>
+      <if test="fourSmall != null" >
+        four_small = #{fourSmall,jdbcType=INTEGER},
+      </if>
+      <if test="fiveSmall != null" >
+        five_small = #{fiveSmall,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.resto.brand.web.model.CommentBaseSetting" >
+    update comment_base_setting
+    set comment_count = #{commentCount,jdbcType=INTEGER},
+      distance_time = #{distanceTime,jdbcType=INTEGER},
+      four_small = #{fourSmall,jdbcType=INTEGER},
+      five_small = #{fiveSmall,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectList" resultType="CommentBaseSetting">select * from comment_base_setting</select>
+</mapper>

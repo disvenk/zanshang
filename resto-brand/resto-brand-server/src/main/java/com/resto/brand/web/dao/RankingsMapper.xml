@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resto.brand.web.dao.RankingsMapper">
+  <resultMap id="BaseResultMap" type="com.resto.brand.web.dto.RankingsDto">
+    <id column="id" property="id" jdbcType="VARCHAR"/>
+    <id column="appraise_id" property="appraiseId" jdbcType="VARCHAR"/>
+    <result column="brand_id" property="brandId" jdbcType="BIGINT"/>
+    <result column="shop_detail_id" property="shopDetailId" jdbcType="BIGINT"/>
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR"/>
+    <result column="formats" property="formats" jdbcType="VARCHAR"/>
+    <result column="total_score" property="totalScore" jdbcType="DECIMAL"/>
+    <result column="service_score" property="serviceScore" jdbcType="DECIMAL"/>
+    <result column="environmental_score" property="environmentalScore" jdbcType="DECIMAL"/>
+    <result column="cost_performance_score" property="costPerformanceScore" jdbcType="DECIMAL"/>
+    <result column="atmosphere_score" property="atmosphereScore" jdbcType="DECIMAL"/>
+    <result column="produce_score" property="produceScore" jdbcType="DECIMAL"/>
+    <result column="order_grade" property="orderGrade" jdbcType="INTEGER"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="foating_number" property="foatingNumber" jdbcType="INTEGER"/>
+    <result column="type" property="type" jdbcType="BIT"/>
+    <result column="create_time" property="createTime" jdbcType="DATE"/>
+    <result column="times" property="times" jdbcType="BIGINT"/>
+    <result column="appraise_count" property="appraiseCount" jdbcType="INTEGER"/>
+  </resultMap>
+  <sql id="Base_Column_List">id,appraise_id, brand_id, shop_detail_id, brand_name, shop_name, formats, total_score, service_score, environmental_score, cost_performance_score, atmosphere_score, produce_score, order_grade,status, foating_number, type, times,create_time, appraise_count</sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">select 
+    <include refid="Base_Column_List"/> from tb_rankings where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">delete from tb_rankings where id = #{id,jdbcType=VARCHAR}</delete>
+  <insert id="insertSelective" parameterType="com.resto.brand.web.dto.RankingsDto">
+    insert into tb_rankings
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="appraiseId != null">appraise_id,</if>
+        <if test="brandId != null">brand_id,</if>
+      <if test="shopDetailId != null">shop_detail_id,</if>  
+      <if test="brandName != null">brand_name,</if>  
+      <if test="shopName != null">shop_name,</if>
+      <if test="formatsId != null">formats_id,</if>
+      <if test="formats != null">formats,</if>  
+      <if test="totalScore != null">total_score,</if>  
+      <if test="serviceScore != null">service_score,</if>  
+      <if test="environmentalScore != null">environmental_score,</if>  
+      <if test="costPerformanceScore != null">cost_performance_score,</if>  
+      <if test="atmosphereScore != null">atmosphere_score,</if>  
+      <if test="produceScore != null">produce_score,</if>  
+      <if test="orderGrade != null">order_grade,</if>
+      <if test="foatingNumber != null">foating_number,</if>
+      <if test="type != null">type,</if>
+      <if test="appraiseCount != null">appraise_count,</if>
+        <if test="times != null">times,</if>
+      create_time,
+      create_time_param,
+    </trim>  
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <if test="appraiseId != null">#{appraise_id,jdbcType=VARCHAR},</if>
+        <if test="brandId != null">#{brandId,jdbcType=VARCHAR},</if>
+      <if test="shopDetailId != null">#{shopDetailId,jdbcType=BIGINT},</if>  
+      <if test="brandName != null">#{brandName,jdbcType=VARCHAR},</if>  
+      <if test="shopName != null">#{shopName,jdbcType=VARCHAR},</if>
+      <if test="formatsId != null">#{formatsId,jdbcType=INTEGER},</if>
+      <if test="formats != null">#{formats,jdbcType=VARCHAR},</if>
+      <if test="totalScore != null">#{totalScore,jdbcType=DECIMAL},</if>  
+      <if test="serviceScore != null">#{serviceScore,jdbcType=DECIMAL},</if>  
+      <if test="environmentalScore != null">#{environmentalScore,jdbcType=DECIMAL},</if>  
+      <if test="costPerformanceScore != null">#{costPerformanceScore,jdbcType=DECIMAL},</if>  
+      <if test="atmosphereScore != null">#{atmosphereScore,jdbcType=DECIMAL},</if>  
+      <if test="produceScore != null">#{produceScore,jdbcType=DECIMAL},</if>  
+      <if test="orderGrade != null">#{orderGrade,jdbcType=INTEGER},</if>
+        <if test="status != null">#{status,jdbcType=INTEGER},</if>
+      <if test="foatingNumber != null">#{foatingNumber,jdbcType=INTEGER},</if>
+      <if test="type != null">#{type,jdbcType=BIT},</if>
+      <if test="appraiseCount != null">#{appraiseCount,jdbcType=INTEGER},</if>
+        <if test="times!= null">#{times,jdbcType=BIGINT},</if>
+      now(),
+      now(),
+    </trim>
+    ON DUPLICATE KEY UPDATE
+      <trim suffix="" suffixOverrides=",">
+          <if test="appraiseId != null">#{appraise_id,jdbcType=VARCHAR},</if>
+          <if test="brandId != null">brand_id = #{brandId,jdbcType=BIGINT},</if>
+          <if test="shopDetailId != null">shop_detail_id = #{shopDetailId,jdbcType=BIGINT},</if>
+          <if test="brandName != null">brand_name = #{brandName,jdbcType=VARCHAR},</if>
+          <if test="shopName != null">shop_name = #{shopName,jdbcType=VARCHAR},</if>
+          <if test="formats != null">formats = #{formats,jdbcType=VARCHAR},</if>
+          <if test="totalScore != null">total_score = #{totalScore,jdbcType=DECIMAL},</if>
+          <if test="serviceScore != null">service_score = #{serviceScore,jdbcType=DECIMAL},</if>
+          <if test="environmentalScore != null">environmental_score = #{environmentalScore,jdbcType=DECIMAL},</if>
+          <if test="costPerformanceScore != null">cost_performance_score = #{costPerformanceScore,jdbcType=DECIMAL},</if>
+          <if test="atmosphereScore != null">atmosphere_score = #{atmosphereScore,jdbcType=DECIMAL},</if>
+          <if test="produceScore != null">produce_score = #{produceScore,jdbcType=DECIMAL},</if>
+          <if test="orderGrade != null">order_grade = #{orderGrade,jdbcType=INTEGER},</if>
+          <if test="status != null">#{status,jdbcType=INTEGER},</if>
+          <if test="foatingNumber != null">foating_number = #{foatingNumber,jdbcType=INTEGER},</if>
+          <if test="type != null">type = #{type,jdbcType=BIT},</if>
+          <if test="appraiseCount != null">appraise_count = #{appraiseCount,jdbcType=INTEGER},</if>
+          <if test="times != null">times = #{times,jdbcType=BIGINT},</if>
+      </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.resto.brand.web.dto.RankingsDto">update tb_rankings
+    <set>
+        <if test="appraiseId != null">#{appraise_id,jdbcType=VARCHAR},</if>
+      <if test="brandId != null">brand_id = #{brandId,jdbcType=BIGINT},</if>
+      <if test="shopDetailId != null">shop_detail_id = #{shopDetailId,jdbcType=BIGINT},</if>  
+      <if test="brandName != null">brand_name = #{brandName,jdbcType=VARCHAR},</if>  
+      <if test="shopName != null">shop_name = #{shopName,jdbcType=VARCHAR},</if>  
+      <if test="formats != null">formats = #{formats,jdbcType=VARCHAR},</if>  
+      <if test="totalScore != null">total_score = #{totalScore,jdbcType=DECIMAL},</if>  
+      <if test="serviceScore != null">service_score = #{serviceScore,jdbcType=DECIMAL},</if>  
+      <if test="environmentalScore != null">environmental_score = #{environmentalScore,jdbcType=DECIMAL},</if>  
+      <if test="costPerformanceScore != null">cost_performance_score = #{costPerformanceScore,jdbcType=DECIMAL},</if>  
+      <if test="atmosphereScore != null">atmosphere_score = #{atmosphereScore,jdbcType=DECIMAL},</if>  
+      <if test="produceScore != null">produce_score = #{produceScore,jdbcType=DECIMAL},</if>
+      <if test="orderGrade != null">order_grade = #{orderGrade,jdbcType=INTEGER},</if>
+        <if test="status != null">#{status,jdbcType=INTEGER},</if>
+      <if test="foatingNumber != null">foating_number = #{foatingNumber,jdbcType=INTEGER},</if>  
+      <if test="type != null">type = #{type,jdbcType=BIT},</if>  
+      <if test="createTime != null">create_time = #{createTime,jdbcType=DATE},</if>
+      <if test="appraiseCount != null">appraise_count = #{appraiseCount,jdbcType=INTEGER},</if>
+        <if test="times != null">times = #{times,jdbcType=BININT},</if>
+      create_time_param=#{createTime,jdbcType=DATE}
+    </set> where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateOrderGradeByNow" parameterType="java.lang.Integer">
+    UPDATE tb_rankings
+      SET order_grade = order_grade + 1
+    WHERE
+    order_grade &gt; ${orderGrade}
+  </update>
+
+  <select id="selectList" resultType="Rankings">select * from tb_rankings</select>
+  <select id="selectByBrandIdAndShopId" resultMap="BaseResultMap">
+    select
+    r.brand_name brand_name,
+    r.shop_name shop_name,
+    r.formats formats,
+    SUM(r.total_score) total_score,
+    SUM(r.service_score) service_score,
+    SUM(r.environmental_score) environmental_score,
+    SUM(r.cost_performance_score) cost_performance_score,
+    SUM(r.atmosphere_score) atmosphere_score,
+    SUM(r.produce_score) produce_score,
+    SUM(r.appraise_count) appraise_count
+    from
+      tb_rankings r
+    WHERE status =1 and brand_id =#{brandId}
+        AND
+      shop_detail_id=#{shopId}
+      AND UNIX_TIMESTAMP(create_time_param) BETWEEN UNIX_TIMESTAMP(#{startDate}) and UNIX_TIMESTAMP(#{endDate})
+  </select>
+    <select id="queryByBrandIdAndShopId" resultMap="BaseResultMap">
+    select
+    r.brand_name brand_name,
+    r.shop_name shop_name,
+    r.formats formats,
+    ROUND(AVG(r.total_score),2) total_score,
+    ROUND(AVG(r.service_score),2) service_score,
+    ROUND(AVG(r.environmental_score),2) environmental_score,
+    ROUND(AVG(r.cost_performance_score),2) cost_performance_score,
+    ROUND(AVG(r.atmosphere_score),2) atmosphere_score,
+    ROUND(AVG(r.produce_score),2) produce_score,
+    SUM(r.appraise_count) appraise_count
+    from
+      tb_rankings r
+    WHERE
+    status=1 and
+      brand_id =#{brandId}
+        AND
+      shop_detail_id=#{shopId}
+  </select>
+
+  <select id="selectAllOrderByGrade" resultType="com.resto.brand.web.dto.RankingsDto">
+    select * from tb_rankings where
+    <if test="brandId!=null and brandId!=0">
+         brand_id=#{brandId} and
+    </if>
+    <if test="formats!=null and !formats.equals('')">
+       formats=#{formats} and
+    </if>
+    DATE_FORMAT(create_time,'%Y-%m-%d')=DATE_FORMAT(now(),'%Y-%m-%d')
+    order by order_grade asc
+  </select>
+
+  <select id="selectByDateAndBrandIdAndShopId" resultType="com.resto.brand.web.dto.RankingsDto">
+    SELECT
+      *
+    FROM
+      tb_rankings
+    WHERE
+      status=1 and
+      brand_id = #{brandId}
+      AND shop_detail_id = #{shopId}
+      AND create_time = #{date}
+  </select>
+
+  <select id="selectRankingByScore" resultType="java.lang.Integer">
+    SELECT
+        IFNULL(IF(r.total_score = ${score}, COUNT(1), SUM(r.count)),1) orderGrade
+    FROM
+        (
+            SELECT
+                COUNT(1) count,
+                total_score
+            FROM
+            WHERE tb_rankings where status=1 and
+                total_score >= ${score}
+            AND create_time = #{date}
+            GROUP BY
+                total_score
+        ) r
+  </select>
+
+  <delete id="deleteRankings">
+    delete from tb_rankings where appraise_count &lt; ${commentCount} and create_time = #{day}
+  </delete>
+
+  <select id="selectListRankings" resultMap="BaseResultMap">
+    SELECT
+      *
+    FROM
+    (
+      SELECT
+        r.brand_id,
+        r.shop_detail_id,
+        r.brand_name,
+        r.shop_name,
+        r.formats,
+        ROUND(AVG(r.total_score),2) total_score,
+        ROUND(AVG(r.service_score),2) service_score,
+        ROUND(AVG(r.environmental_score),2) environmental_score,
+        ROUND(AVG(r.cost_performance_score),2) cost_performance_score,
+        ROUND(AVG(r.atmosphere_score),2) atmosphere_score,
+        ROUND(AVG(r.produce_score),2) produce_score,
+        SUM(r.appraise_count) appraise_count,
+        MAX(r.create_time) create_time
+      FROM
+      (
+        SELECT
+          *
+        FROM
+          tb_rankings where status=1
+        ORDER BY create_time DESC
+      ) r GROUP BY r.shop_detail_id
+    ) result
+    <where>
+      <choose>
+        <when test="isToDay == 1">
+          result.create_time = DATE_FORMAT(now(), '%Y-%m-%d')
+        </when>
+        <otherwise>
+          result.create_time = DATE_SUB(DATE_FORMAT(now(), '%Y-%m-%d'),INTERVAL 1 DAY)
+        </otherwise>
+      </choose>
+      <if test="brandId != null">
+        AND result.brand_id = #{brandId}
+      </if>
+      <if test="formats != null">
+        AND result.formats = #{formats}
+      </if>
+    </where>
+  </select>
+
+    <select id="selectListRankingsByDate" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        r.brand_id,
+        r.shop_detail_id,
+        r.brand_name,
+        r.shop_name,
+        r.formats,
+        ROUND(AVG(r.total_score),2) total_score,
+        ROUND(AVG(r.service_score),2) service_score,
+        ROUND(AVG(r.environmental_score),2) environmental_score,
+        ROUND(AVG(r.cost_performance_score),2) cost_performance_score,
+        ROUND(AVG(r.atmosphere_score),2) atmosphere_score,
+        ROUND(AVG(r.produce_score),2) produce_score,
+        SUM(r.appraise_count) appraise_count,
+        MAX(r.create_time) create_time
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        tb_rankings where status=1
+        ORDER BY create_time DESC
+        ) r GROUP BY r.shop_detail_id
+        ) result
+        <where>
+            <choose>
+                <when test="isToDay == 1">
+                    result.create_time = #{date}
+                </when>
+                <otherwise>
+                    result.create_time = DATE_SUB(#{date},INTERVAL 1 DAY)
+                </otherwise>
+            </choose>
+            <if test="brandId != null">
+                AND result.brand_id = #{brandId}
+            </if>
+            <if test="formats != null">
+                AND result.formats = #{formats}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListRankingsByStartAndEnd" resultType="com.resto.brand.web.dto.RankingsDto">
+/*        select
+        count(1) count,
+        id,
+        brand_id,
+        shop_detail_id,
+        brand_name,
+        shop_name,
+        formats,
+        sum(total_score) total_score,
+        sum(service_score) service_score,
+        sum(environmental_score) environmental_score,
+        sum(cost_performance_score) cost_performance_score,
+        sum(atmosphere_score) atmosphere_score,
+        sum(produce_score) produce_score,
+        sum(appraise_count) appraise_count*/
+        select
+        count(1) count,
+        id,
+        brand_id,
+        shop_detail_id,
+        brand_name,
+        shop_name,
+        formats,
+        convert(sum(total_score)/sum(appraise_count),decimal(10,2)) total_score,
+        convert(sum(service_score)/sum(appraise_count),decimal(10,2)) service_score,
+        convert(sum(environmental_score)/sum(appraise_count),decimal(10,2)) environmental_score,
+        convert(sum(cost_performance_score)/sum(appraise_count),decimal(10,2)) cost_performance_score,
+        convert(sum(atmosphere_score)/sum(appraise_count),decimal(10,2)) atmosphere_score,
+        convert(sum(produce_score)/sum(appraise_count),decimal(10,2)) produce_score,
+        sum(appraise_count) appraise_count
+        from
+        tb_rankings where status=1 and
+        UNIX_TIMESTAMP(create_time_param) BETWEEN UNIX_TIMESTAMP(#{startDate}) and UNIX_TIMESTAMP(#{endDate})
+        GROUP BY shop_name order by total_score desc
+    </select>
+
+
+    <select id="selectAll" resultType="com.resto.brand.web.dto.RankingsDto">
+        select
+        brand_id,
+        shop_detail_id,
+        brand_name,
+        formats,
+        shop_name ,
+        SUM(appraise_count) appraise_count,
+        SUM(total_score) total_score,
+        SUM(service_score) service_score,
+        SUM(environmental_score) environmental_score,
+        SUM(cost_performance_score) cost_performance_score,
+        SUM(atmosphere_score) atmosphere_score,
+        SUM(produce_score) produce_score
+         from tb_rankings
+        <where>
+            <if test="brandId!=null">
+                brand_id=#{brandId} and
+            </if>
+            <if test="formatsId!=null">
+                formats_id=#{formatsId} and
+            </if>
+            <if test="startDate!=null and endDate!=null and startDate.equals(endDate) ">
+                UNIX_TIMESTAMP(create_time_param)=UNIX_TIMESTAMP(#{startDate}
+            </if>
+            <if test="startDate!=null and endDate!=null and !startDate.equals(endDate) ">
+                status=1 and
+                UNIX_TIMESTAMP(create_time_param)
+                BETWEEN UNIX_TIMESTAMP(#{startDate}) and UNIX_TIMESTAMP(#{endDate})
+            </if>
+        </where>
+        GROUP BY shop_detail_id
+    </select>
+
+    <select id="selectByShopId" resultType="com.resto.brand.web.dto.RankingsDto">
+        select
+        brand_id,
+        shop_detail_id,
+        brand_name,
+        formats,
+        shop_name ,
+        SUM(appraise_count) appraise_count,
+        SUM(total_score) total_score,
+        SUM(service_score) service_score,
+        SUM(environmental_score) environmental_score,
+        SUM(cost_performance_score) cost_performance_score,
+        SUM(atmosphere_score) atmosphere_score,
+        SUM(produce_score) produce_score
+        from tb_rankings
+        where
+                shop_detail_id=#{shopId} and status=1 and
+                UNIX_TIMESTAMP(create_time_param)
+                BETWEEN UNIX_TIMESTAMP(#{startDate}) and UNIX_TIMESTAMP(#{endDate})
+    </select>
+
+    <update id="updateStatusByAppraiseId">
+        update tb_rankings set status=1 where appraise_id=#{appraiseId}
+    </update>
+</mapper>

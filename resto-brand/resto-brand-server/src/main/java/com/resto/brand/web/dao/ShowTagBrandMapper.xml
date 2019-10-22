@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.resto.brand.web.dao.ShowTagBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.resto.brand.web.model.ShowTagBrand" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="show_sort" property="showSort" jdbcType="INTEGER" />
+    <result column="show_type" property="showType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, show_sort, show_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_show_photo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_show_photo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.resto.brand.web.model.ShowTagBrand" >
+    insert into tb_show_photo (id, title, show_sort, 
+      show_type)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{showSort,jdbcType=INTEGER}, 
+      #{showType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.resto.brand.web.model.ShowTagBrand" >
+    insert into tb_show_photo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="showSort != null" >
+        show_sort,
+      </if>
+      <if test="showType != null" >
+        show_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="showSort != null" >
+        #{showSort,jdbcType=INTEGER},
+      </if>
+      <if test="showType != null" >
+        #{showType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.resto.brand.web.model.ShowTagBrand" >
+    update tb_show_photo
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="showSort != null" >
+        show_sort = #{showSort,jdbcType=INTEGER},
+      </if>
+      <if test="showType != null" >
+        show_type = #{showType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.resto.brand.web.model.ShowTagBrand" >
+    update tb_show_photo
+    set title = #{title,jdbcType=VARCHAR},
+      show_sort = #{showSort,jdbcType=INTEGER},
+      show_type = #{showType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_show_photo
+  </select>
+
+  <select id="selectShowTagByTitle" resultMap="BaseResultMap">
+   SELECT title FROM tb_show_photo WHERE title=#{title}
+  </select>
+
+</mapper>

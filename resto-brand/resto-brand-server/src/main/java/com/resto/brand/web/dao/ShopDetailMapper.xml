@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resto.brand.web.dao.ShopDetailMapper">
+  <resultMap id="BaseResultMap" type="com.resto.brand.web.model.ShopDetail">
+    <id column="id" property="id" jdbcType="BIGINT"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="address" property="address" jdbcType="VARCHAR"/>
+    <result column="longitude" property="longitude" jdbcType="VARCHAR"/>
+    <result column="latitude" property="latitude" jdbcType="VARCHAR"/>
+    <result column="phone" property="phone" jdbcType="VARCHAR"/>
+    <result column="open_time" property="openTime" jdbcType="TIME"/>
+    <result column="close_time" property="closeTime" jdbcType="TIME"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    <result column="add_user" property="addUser" jdbcType="VARCHAR"/>
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+    <result column="brand_id" property="brandId" jdbcType="VARCHAR"/>
+    <result column="city" property="city" jdbcType="VARCHAR"/>
+    <result column="photo" property="photo" jdbcType="VARCHAR"/>
+    <result column="shop_detail_index" property="shopDetailIndex" jdbcType="INTEGER"/>
+    <result column="appid" property="appid" jdbcType="VARCHAR"/>
+    <result column="appsecret" property="appsecret" jdbcType="VARCHAR"/>
+    <result column="appraise_cd" property="appraiseCD" jdbcType="INTEGER"/>
+    <result column="business_format_id" property="businessFormatId" jdbcType="BIGINT"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+   id, name, address, longitude, latitude, phone, open_time, close_time, status, remark, add_user, add_time, update_time, brand_id, city, photo,shop_detail_index,appid, appsecret,appraise_cd,business_format_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">select
+    <include refid="Base_Column_List"/> from shop_detail where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">delete from shop_detail where id = #{id,jdbcType=BIGINT}</delete>
+  <insert id="insertSelective" parameterType="com.resto.brand.web.model.ShopDetail">insert into shop_detail
+    <trim prefix="(" suffix=")" suffixOverrides=","> 
+      <if test="id != null">id,</if>  
+      <if test="name != null">name,</if>  
+      <if test="address != null">address,</if>  
+      <if test="longitude != null">longitude,</if>  
+      <if test="latitude != null">latitude,</if>  
+      <if test="phone != null">phone,</if>  
+      <if test="openTime != null">open_time,</if>  
+      <if test="closeTime != null">close_time,</if>  
+      <if test="status != null">status,</if>  
+      <if test="remark != null">remark,</if>  
+      <if test="addUser != null">add_user,</if>
+      <if test="addTime != null">add_time,</if>  
+      <if test="updateTime != null">update_time,</if>  
+      <if test="brandId != null">brand_id,</if> 
+      <if test="updateUser != null">update_user,</if> 
+      <if test="isOpen != null">is_open,</if>
+      <if test="city != null">city,</if>
+      <if test="photo != null">photo,</if>
+      <if test="shopDetailIndex!= null">shop_detail_index,</if>
+      <if test="appid != null">appid,</if>
+      <if test="appsecret != null">appsecret,</if>
+      <if test="appraiseCD != null">appraise_cd,</if>
+      <if test="businessFormatId != null ">business_format_id,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=","> 
+      <if test="id != null">#{id,jdbcType=BIGINT},</if>
+      <if test="name != null">#{name,jdbcType=VARCHAR},</if>  
+      <if test="address != null">#{address,jdbcType=VARCHAR},</if>  
+      <if test="longitude != null">#{longitude,jdbcType=VARCHAR},</if>  
+      <if test="latitude != null">#{latitude,jdbcType=VARCHAR},</if>  
+      <if test="phone != null">#{phone,jdbcType=VARCHAR},</if>  
+      <if test="openTime != null">#{openTime,jdbcType=TIME},</if>  
+      <if test="closeTime != null">#{closeTime,jdbcType=TIME},</if>  
+      <if test="status != null">#{status,jdbcType=INTEGER},</if>  
+      <if test="remark != null">#{remark,jdbcType=VARCHAR},</if>  
+      <if test="addUser != null">#{addUser,jdbcType=VARCHAR},</if>
+      <if test="addTime != null">#{addTime,jdbcType=TIMESTAMP},</if>  
+      <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>  
+      <if test="brandId != null">#{brandId,jdbcType=VARCHAR},</if> 
+      <if test="updateUser != null">#{updateUser,jdbcType=VARCHAR},</if>
+      <if test="isOpen != null">#{isOpen,jdbcType=VARCHAR},</if>
+      <if test="city != null">#{city,jdbcType=VARCHAR},</if>
+      <if test="photo != null">#{photo,jdbcType=VARCHAR},</if>
+      <if test="shopDetailIndex != null">#{shopDetailIndex,jdbcType=INTEGER},</if>
+      <if test="appid != null ">#{appid,jdbcType=VARCHAR},</if>
+      <if test="appsecret != null ">#{appsecret,jdbcType=VARCHAR},</if>
+      <if test="appraiseCD != null ">#{appraiseCD,jdbcType=INTEGER},</if>
+      <if test="businessFormatId != null ">#{businessFormatId,jdbcType=BIGINT},</if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.resto.brand.web.model.ShopDetail">
+    update shop_detail
+    <set> 
+      <if test="name != null">name = #{name,jdbcType=VARCHAR},</if>  
+      <if test="address != null">address = #{address,jdbcType=VARCHAR},</if>  
+      <if test="longitude != null">longitude = #{longitude,jdbcType=VARCHAR},</if>  
+      <if test="latitude != null">latitude = #{latitude,jdbcType=VARCHAR},</if>  
+      <if test="phone != null">phone = #{phone,jdbcType=VARCHAR},</if>  
+      <if test="openTime != null">open_time = #{openTime,jdbcType=TIME},</if>  
+      <if test="closeTime != null">close_time = #{closeTime,jdbcType=TIME},</if>  
+      <if test="status != null">status = #{status,jdbcType=INTEGER},</if>  
+      <if test="remark != null">remark = #{remark,jdbcType=VARCHAR},</if>  
+      <if test="addUser != null">add_user = #{addUser,jdbcType=VARCHAR},</if>
+      <if test="addTime != null">add_time = #{addTime,jdbcType=TIMESTAMP},</if>  
+      <if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>  
+      <if test="brandId != null">brand_id = #{brandId,jdbcType=VARCHAR},</if> 
+      <if test="state!= null">state = #{state,jdbcType=VARCHAR},</if> 
+      <if test="isOpen!= null">is_open = #{isOpen,jdbcType=VARCHAR},</if>
+      <if test="city!= null">city = #{city,jdbcType=VARCHAR},</if>
+      <if test="photo!= null">photo = #{photo,jdbcType=VARCHAR},</if>
+      <if test="shopDetailIndex!= null">shop_detail_index = #{shopDetailIndex},</if>
+      <if test="appid != null ">appid = #{appid,jdbcType=VARCHAR},</if>
+      <if test="appsecret != null ">appsecret = #{appsecret,jdbcType=VARCHAR},</if>
+      <if test="appraiseCD != null ">appraise_cd = #{appraiseCD,jdbcType=INTEGER},</if>
+      <if test="businessFormatId != null ">business_format_id = #{businessFormatId,jdbcType=BIGINT},</if>
+      </set> where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.resto.brand.web.model.ShopDetail">
+      update shop_detail set name = #{name,jdbcType=VARCHAR},is_open=#{isOpen} address = #{address,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR}, latitude = #{latitude,jdbcType=VARCHAR}, phone = #{phone,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=TIME}, close_time = #{closeTime,jdbcType=TIME}, status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}, add_user = #{addUser,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP}, update_time = #{updateTime,jdbcType=TIMESTAMP}, brand_id = #{brandId,jdbcType=VARCHAR},
+      wait_red_envelope = #{waitRedEnvelope}, base_money = #{baseMoney}, high_money = #{highMoney}, shop_detail_index = #{shopDetailIndex},
+      geekpos_queue_islogin = #{geekposQueueIslogin}, geekpos_queue_last_login_time = #{geekposQueueLastLoginTime},is_new_qrcode = #{isNewQrcode},
+      is_user_identity = #{isUserIdentity},consume_number = #{consumeNumber},rolling_switch = #{rollingSwitch},sweep_mode = #{sweepMode},
+      open_union_pay = #{openUnionPay},open_money_pay = #{openMoneyPay},pos_plus_type = #{posPlusType} ,third_appid=#{thirdAppid},
+      dazhong_shop_id = #{dazhongShopId},dazhong_app_auth_token = #{dazhongAppAuthToken},integral_pay = #{integralPay},pos_open_table = #{posOpenTable},
+      open_pos_ali_pay=#{openPosAliPay},open_pos_union_pay = #{openPosUnionPay},open_pos_money_pay = #{openPosMoneyPay},open_pos_shanhui_pay = #{openPosShanhuiPay},
+      open_pos_integral_pay = #{openPosIntegralPay},open_pos_charge = #{openPosCharge},tv_mode = #{tvMode},modify_order_print_receipt = #{modifyOrderPrintReceipt},modify_order_print_kitchen = #{modifyOrderPrintKitchen},
+      open_pos_pay_order = #{openPosPayOrder},open_order_remark = #{openOrderRemark},open_pos_wechat_pay = #{openPosWeChatPay},template_type = #{templateType},wait_ip = #{waitIp},is_recommend_category = #{isRecommendCategory},
+      tv_text_color = #{tvTextColor},tv_background = #{tvBackground},tv_textbox_background = #{tvTextBoxBackground},wait_remind_text = #{waitRemindText},is_turntable = #{isTurntable},turntable_print_type = #{turntablePrintType},is_takeout = #{isTakeout},
+      open_pos_discount = #{openPosDiscount},apart = #{apart},open_many_customer_order = #{openManyCustomerOrder}
+      where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectList" resultType="ShopDetail">
+  	select 
+  	s.id,s.name,s.address,s.phone,s.open_time,s.close_time,s.status,s.remark,s.add_user,s.longitude,s.latitude,s.add_time,s.update_time,s.brand_id,s.update_user,
+    b.brand_name,s.city,s.photo,appid, appsecret,s.is_open,s.shop_detail_index,s.appraise_cd,s.business_format_id
+   from shop_detail s left join brand b on s.brand_id=b.id
+   where s.state=1 order by b.brand_name asc
+   </select>
+  
+  <select id="selectIdAndName" resultType="ShopDetail" parameterType="String">
+  	select id,name from shop_detail where brand_id = #{brandId} and state = 1 
+  </select>
+  
+  <select id="selectByBrandId" resultType="ShopDetail">
+  	select s.*,b.brand_name from shop_detail s LEFT JOIN brand b on s.brand_id = b.id where
+  		brand_id=#{0} and s.state=1 and s.is_open=1 ORDER BY s.shop_detail_index
+  </select>
+
+  <select id="selectByBusinessFormatId" resultType="java.lang.Integer">
+    SELECT COUNT(s.id) FROM shop_detail s WHERE s.business_format_id=#{businessFormatId}
+  </select>
+
+  <select id="selectByShopCity" resultType="ShopDetail">
+    select city from shop_detail where is_open=1 and state = 1 and brand_id = #{brandId} group by city
+  </select>
+
+  <select id="selectByCityOrName" resultType="ShopDetail">
+    select * from shop_detail where state = 1 and is_open=1 and (city like  CONCAT(CONCAT('%', #{name}), '%')  or name like CONCAT(CONCAT('%', #{name}), '%')) and brand_id = #{brandId}
+  </select>
+
+  <select id="selectByCity" resultType="ShopDetail">
+    select * from shop_detail where state = 1 and is_open=1 and city = #{city} and brand_id = #{brandId}
+  </select>
+
+  <select id="selectOrderByIndex" resultType="ShopDetail">
+    select * from shop_detail where state = 1 and is_open=1 and brand_id = #{brandId} order by shop_detail_index
+  </select>
+
+  <select id="selectByRestaurantId" resultType="ShopDetail">
+    select * from shop_detail where restaurant_id = #{restaurantId}
+  </select>
+
+  <select id="selectByOOrderShopId" resultType="ShopDetail">
+    select * from shop_detail where restaurant_id = #{shopId}
+  </select>
+
+  <select id="selectQueueInfo" parameterType="String" resultType="ShopDetail">
+  	SELECT s.id,s.name,IFNULL(s.slogan,bs.slogan) slogan,IFNULL(s.queue_notice,bs.queue_notice) queue_notice from shop_detail s
+  	 LEFT JOIN brand b on s.brand_id = b.id LEFT JOIN brand_setting bs on b.brand_setting_id = bs.id where s.id = #{shopId}
+  </select>
+
+  <select id="selectByPrimaryKeyShop" resultType="ShopDetail" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from brand_setting
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectByThirdAppId" parameterType="String" resultType="ShopDetail">
+        SELECT * FROM  shop_detail WHERE third_appid=#{thirdAppid}
+    </select>
+
+    <update id="updatePosWaitredEnvelope" parameterType="com.resto.brand.web.model.ShopDetail">
+        update shop_detail set pos_waitred_envelope = #{state} where id = #{id}
+    </update>
+</mapper>
